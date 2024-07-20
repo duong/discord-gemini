@@ -1,13 +1,7 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import run from "./run";
 
 const main = () => {
-  if (!process.env.API_KEY) {
-    throw new Error("missing API_KEY");
-  }
-
-  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  run();
 };
 
 if (require.main === module) {
