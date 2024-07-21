@@ -1,10 +1,7 @@
 import { GoogleGenerativeAIError } from "@google/generative-ai";
 import { CommandInteraction, DiscordjsError } from "discord.js";
 import promptModel from "../../model/promptModel";
-
-const botResponse = (userPromptMessage: string, modelResponse: string) => {
-  return [userPromptMessage, modelResponse].join(" ");
-};
+import botResponse from "../../util/botResponse";
 
 export default async function ask(interaction: CommandInteraction) {
   if (interaction.isChatInputCommand()) {
