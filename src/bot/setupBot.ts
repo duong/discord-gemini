@@ -12,6 +12,8 @@ export default async function setupBot(token: string) {
 
     if (interaction.commandName === "ping") {
       await interaction.reply("Pong!");
+    } else if (interaction.commandName === "ask-dad") {
+      await interaction.reply("Pong!");
     }
   });
 

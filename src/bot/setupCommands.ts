@@ -6,6 +6,10 @@ export default async function setupCommands(token: string, clientId: string) {
       name: "ping",
       description: "Replies with Pong!",
     },
+    {
+      name: "ask-dad",
+      description: "Ask Dad Bot a really serious question",
+    },
   ];
 
   const rest = new REST({ version: "10" }).setToken(token);

@@ -1,6 +1,6 @@
 import getModel from "./getModel";
 
-export default async function run(prompt: string) {
+export default async function prompt(prompt: string) {
   const model = getModel();
   const result = await model.generateContent(prompt);
   const response = result.response;
