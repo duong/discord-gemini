@@ -12,7 +12,8 @@ app.get("/healthz", (req, res) => {
 
 app.get("/run", async (req, res) => {
   console.log("GET /run");
-  const result = await run();
+  const prompt = "Write a story about a magic backpack.";
+  const result = await run(prompt);
   console.log(result);
   res.send(result);
 });
