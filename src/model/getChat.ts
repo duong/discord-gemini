@@ -1,12 +1,13 @@
 import { ChatSession } from "@google/generative-ai";
 import getModel from "./getModel";
 
-let chat: ChatSession;
+let chats: Record<string, ChatSession> = {};
 
-export default async function getChat() {
+export default async function getChat(chatId: string, modelId = "default") {
+  const chat = chats[chatId];
   if (!chat) {
-    const model = getModel();
-    chat = model.startChat({ history: [] });
+    const model = getModel(modelId);
+    chats[chatId] = model.startChat({ history: [] });
   }
-  return chat;
+  return chats[chatId];
 }

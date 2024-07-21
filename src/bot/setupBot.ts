@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, GatewayIntentBits, TextChannel } from "discord.js";
 import ask from "./commands/ask";
 import setInstruction from "./commands/setInstruction";
 
@@ -17,7 +17,13 @@ export default async function setupBot(token: string) {
     if (interaction.commandName === "ping") {
       await interaction.reply("Pong!");
     } else if (interaction.commandName === "ask") {
-      ask(interaction);
+      const channel = client.channels.cache.get(interaction.channelId);
+      if (!channel) {
+        throw new Error("Failed to get channel");
+      }
+      if (channel.isTextBased()) {
+        ask(interaction, channel as TextChannel);
+      }
     } else if (interaction.commandName === "instruct") {
       setInstruction(interaction);
     } else if (interaction.commandName === "server") {
