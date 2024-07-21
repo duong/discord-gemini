@@ -1,15 +1,10 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import getModel from "./getModel";
 
 export default async function run() {
-  if (!process.env.API_KEY) {
-    throw new Error("missing API_KEY");
-  }
+  const model = getModel();
+  const prompt = "Write a story about a magic backpack.";
 
-  const prompt = "what is the most important branch of mathematics?";
-  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const result = await model.generateContent(prompt);
   const response = result.response;
-  const text = response.text();
-  console.log(text);
+  return response.text();
 }
