@@ -1,10 +1,22 @@
 import express from "express";
 import run from "./run";
+import verifyDiscordRequest from "./verifyDiscordRequest";
+import setupCommands from "./setupCommands";
+import setupBot from "./setupBot";
 
 const app = express();
 const port = 3000;
+const { CLIENT_ID, PUBLIC_KEY, DISCORD_TOKEN } = process.env;
 
-app.use(express.json());
+if (!CLIENT_ID || !PUBLIC_KEY || !DISCORD_TOKEN) {
+  throw new Error("Missing required env vars");
+}
+
+setupCommands(DISCORD_TOKEN, CLIENT_ID);
+const client = setupBot(DISCORD_TOKEN);
+
+// Parse request body and verifies incoming requests using discord-interactions package
+// app.use(express.json({ verify: verifyDiscordRequest(PUBLIC_KEY) }));
 
 app.get("/healthz", (req, res) => {
   res.send("healthy");
