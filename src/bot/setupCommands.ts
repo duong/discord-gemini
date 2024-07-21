@@ -14,7 +14,19 @@ export default async function setupCommands(token: string, clientId: string) {
       .addStringOption((option) =>
         option
           .setName("question")
-          .setDescription("The question you want to ask"),
+          .setDescription("The question you want to ask")
+          .setMaxLength(50),
+      ),
+    new SlashCommandBuilder()
+      .setName("instruct")
+      .setDescription("Set the system instruction")
+      .addStringOption((option) =>
+        option
+          .setName("instruction")
+          .setDescription(
+            "The system instruction. E.g. You are a cat. Your name is Neko.",
+          )
+          .setMaxLength(50),
       ),
   ];
 
