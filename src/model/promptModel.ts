@@ -1,8 +1,8 @@
-import getModel from "./getModel";
+import getChat from "./getChat";
 
 export default async function promptModel(prompt: string) {
-  const model = getModel();
-  const result = await model.generateContent(prompt);
+  const chat = await getChat();
+  const result = await chat.sendMessage(prompt);
   const response = result.response;
   return response.text();
 }
