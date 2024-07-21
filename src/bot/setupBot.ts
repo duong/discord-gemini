@@ -28,6 +28,4 @@ export default async function setupBot(token: string) {
   });
 
   client.login(token);
-
-  return client;
 }

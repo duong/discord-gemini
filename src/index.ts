@@ -1,5 +1,5 @@
-import setupCommands from "./bot/setupCommands";
 import setupBot from "./bot/setupBot";
+import setupCommands from "./bot/setupCommands";
 
 const { CLIENT_ID, PUBLIC_KEY, DISCORD_TOKEN } = process.env;
 
@@ -8,4 +8,4 @@ if (!CLIENT_ID || !PUBLIC_KEY || !DISCORD_TOKEN) {
 }
 
 setupCommands(DISCORD_TOKEN, CLIENT_ID);
-const client = setupBot(DISCORD_TOKEN);
+setupBot(DISCORD_TOKEN);
