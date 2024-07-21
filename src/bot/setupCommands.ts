@@ -1,15 +1,21 @@
-import { REST, Routes } from "discord.js";
+import { REST, Routes, SlashCommandBuilder } from "discord.js";
 
 export default async function setupCommands(token: string, clientId: string) {
   const commands = [
-    {
-      name: "ping",
-      description: "Replies with Pong!",
-    },
-    {
-      name: "ask-dad",
-      description: "Ask Dad Bot a really serious question",
-    },
+    new SlashCommandBuilder()
+      .setName("ping")
+      .setDescription("Replies with Pong!"),
+    new SlashCommandBuilder()
+      .setName("server")
+      .setDescription("Provides information about the server."),
+    new SlashCommandBuilder()
+      .setName("ask")
+      .setDescription("Ask Bot a serious question")
+      .addStringOption((option) =>
+        option
+          .setName("question")
+          .setDescription("The question you want to ask"),
+      ),
   ];
 
   const rest = new REST({ version: "10" }).setToken(token);
